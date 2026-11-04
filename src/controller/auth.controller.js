@@ -69,7 +69,11 @@ export const loginController=async(req,res)=>{
         refreshToken:refreshToken
     })
 
-    res.cookie('refreshToken',refreshToken)
+   res.cookie("refreshToken", refreshToken, {
+    httpOnly: true,
+    secure: true,
+    sameSite: "none"
+});
     
     res.status(200).json({
         message:"login successfully",
@@ -117,7 +121,11 @@ export const refreshController=async(req,res)=>{
             refreshToken:refreshToken
         })
 
-        res.cookie('refreshToken',refreshToken)
+        res.cookie("refreshToken", refreshToken, {
+    httpOnly: true,
+    secure: true,
+    sameSite: "none"
+});
 
         res.status(200).json({
             message:"token refreshed successfully",
